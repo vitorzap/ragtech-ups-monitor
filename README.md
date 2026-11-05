@@ -34,6 +34,51 @@ by this project.
 ## Components
 
 
+## System Architecture
+
+```mermaid
+flowchart TD
+    UPS["Ragtech Easy Pro 700 VA<br/>UPS / USB CDC"]
+
+    subgraph QNAP["QNAP NAS"]
+        subgraph DOCKER["Docker / Network UPS Tools"]
+            DRIVER["Ragtech NUT Driver"]
+            UPSD["NUT Server - upsd"]
+            DRIVER --> UPSD
+        end
+
+        POLICY["Adaptive Power Management<br/>QNAP V5.2"]
+        SHUTQ["QNAP Safe Shutdown"]
+    end
+
+    subgraph MAC["Mac mini / macOS"]
+        GUI["NoBrkMon<br/>Monitoring Dashboard"]
+        RECEIVER["Restricted SSH Receiver"]
+        SHUTM["macOS Safe Shutdown"]
+
+        RECEIVER --> SHUTM
+    end
+
+    UPS -->|"USB /dev/ttyACM0"| DRIVER
+    UPSD -->|"NUT Protocol"| POLICY
+    UPSD -->|"TCP / NUT Protocol"| GUI
+
+    POLICY -->|"Battery and time thresholds"| SHUTQ
+    POLICY -->|"SSH: ups-shutdown"| RECEIVER
+
+    classDef hardware fill:#dceaff,stroke:#547fb5,color:#183b68
+    classDef service fill:#e2f3e9,stroke:#50966d,color:#20583b
+    classDef monitor fill:#eee5fa,stroke:#9373b9,color:#593779
+    classDef critical fill:#ffe8e2,stroke:#c76d5e,color:#85372d
+
+    class UPS hardware
+    class DRIVER,UPSD,POLICY service
+    class GUI monitor
+    class RECEIVER,SHUTM,SHUTQ critical
+```
+
+
+
 | Directory | Description |
 |---|---|
 | `docker/` | NUT container build and configuration |
