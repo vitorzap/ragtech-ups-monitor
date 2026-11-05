@@ -81,3 +81,14 @@ See THIRD_PARTY_NOTICES.md.
 
 Issues, compatibility reports, documentation improvements,
 and pull requests are welcome.
+
+## License
+
+Original project components are licensed under MIT,
+subject to third-party exceptions.
+
+The Ragtech driver and NUT retain their upstream
+licenses, including GPL-2.0-or-later where applicable.
+
+See [Licensing](LICENSES.md) and
+[Acknowledgments](ACKNOWLEDGMENTS.md).
