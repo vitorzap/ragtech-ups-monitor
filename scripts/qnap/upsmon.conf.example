@@ -1,0 +1,12 @@
+# QNAP NUT monitor
+# Adaptive shutdown is controlled by qnap-ups-events.sh V5.2.
+
+MONITOR ragtech700@127.0.0.1:3493 0 monuser CHANGE_ME secondary
+
+MINSUPPLIES 1
+SHUTDOWNCMD "/bin/true"
+
+POLLFREQ 5
+POLLFREQALERT 5
+HOSTSYNC 15
+DEADTIME 25

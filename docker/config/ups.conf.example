@@ -1,0 +1,4 @@
+[ragtech700]
+    driver = ragtech
+    port = /dev/ttyACM0
+    desc = "Ragtech USB UPS"

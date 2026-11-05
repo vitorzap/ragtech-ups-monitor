@@ -1,0 +1,6 @@
+# Example NUT monitoring account.
+# Replace CHANGE_ME with a unique password before use.
+
+[monuser]
+    password = CHANGE_ME
+    upsmon secondary

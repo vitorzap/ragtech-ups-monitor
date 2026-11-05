@@ -18,33 +18,33 @@
 # - Protecao para perda do NUT apos OB confirmado.
 # ============================================================
 
-BASE="/share/Container/qnap-stack/nut-ragtech"
-UPS="ragtech700@127.0.0.1:3493"
+SCRIPT_DIR=$(CDPATH= cd -- "$(dirname -- "$0")" && pwd) || exit 1
+. "$SCRIPT_DIR/ups-common.sh"
 
 LOG="$BASE/qnap-test/ups-events.log"
 HISTORY="$BASE/qnap-test/ups-history.txt"
 OB_MARKER="/var/run/qnap-ragtech-ob-confirmed"
 
 # Politica basica
-MAC_DELAY=30
-QNAP_DELAY=60
+: "${MAC_DELAY:=30}"
+: "${QNAP_DELAY:=60}"
 
 # Politica adaptativa
-CHARGE_LIMIT=50
-SECONDS_PER_PERCENT=15
-MAX_EXTRA=600
+: "${CHARGE_LIMIT:=50}"
+: "${SECONDS_PER_PERCENT:=15}"
+: "${MAX_EXTRA:=600}"
 
 # Amostragem da bateria
-STABILIZATION=90
-MIN_SAMPLE_SECONDS=60
-MIN_SAMPLE_DROP=2
+: "${STABILIZATION:=90}"
+: "${MIN_SAMPLE_SECONDS:=60}"
+: "${MIN_SAMPLE_DROP:=2}"
 
 # Usar apenas 50% do tempo calculado ate 50% de carga.
-RATE_SAFETY_PERCENT=50
+: "${RATE_SAFETY_PERCENT:=50}"
 
-INTERVAL=5
-RETRY_INTERVAL=10
-MAC_TIMEOUT=30
+: "${INTERVAL:=5}"
+: "${RETRY_INTERVAL:=10}"
+: "${MAC_TIMEOUT:=30}"
 
 # Estado da interrupcao
 START_OB=""

@@ -1,6 +1,6 @@
 {
   "pollIntervalSeconds": 5,
-  "target": "ragtech700@xxx.xxx.xxx.xxx:18083",
+  "target": "ragtech700@192.0.2.10:3493"
   "thresholds": {
     "battery.charge": {
       "okMin": 80,

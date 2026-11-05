@@ -36,3 +36,25 @@ xcuserdata/
 *.bak
 *.backup
 *.backup.sh
+
+# QNAP / SSH private configuration
+scripts/qnap/ups-config.conf
+scripts/qnap/ssh/
+scripts/qnap/qnap-test/
+scripts/qnap/enable-real-shutdown
+
+# Private NUT configuration
+docker/config/ups.conf
+docker/config/upsd.conf
+docker/config/upsd.users
+
+# Local NUT configuration
+/docker/config/ups.conf
+/docker/config/upsd.conf
+/docker/config/upsd.users
+
+# QNAP private configuration
+/scripts/qnap/ups-config.conf
+/scripts/qnap/qnap-test/
+/scripts/qnap/ssh/
+/scripts/qnap/enable-real-shutdown

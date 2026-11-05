@@ -1,6 +1,7 @@
 #!/bin/sh
 
-BASE="/share/Container/qnap-stack/nut-ragtech"
+SCRIPT_DIR=$(CDPATH= cd -- "$(dirname -- "$0")" && pwd) || exit 1
+. "$SCRIPT_DIR/ups-common.sh"
 LOG="$BASE/qnap-test/ups-events-watch.log"
 LOCK="/var/run/qnap-ups-events-watch.lock"
 

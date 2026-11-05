@@ -1,0 +1,31 @@
+services:
+  nut:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile
+
+    image: ragtech-nut:local
+    container_name: ragtech-nut
+    restart: unless-stopped
+
+    devices:
+      - /dev/ttyACM0:/dev/ttyACM0
+
+    ports:
+      - "127.0.0.1:3493:3493"
+
+    environment:
+      UPS_NAME: ragtech700
+      NUT_CONFPATH: /etc/nut
+      NUT_STATEPATH: /run/nut
+
+    volumes:
+      - ./config/ups.conf:/etc/nut/ups.conf:ro
+      - ./config/upsd.conf:/etc/nut/upsd.conf:ro
+      - ./config/upsd.users:/etc/nut/upsd.users:ro
+      - ./start-nut.sh:/usr/local/bin/start-nut.sh:ro
+
+    command: ["/bin/sh", "/usr/local/bin/start-nut.sh"]
+
+    tmpfs:
+      - /run/nut

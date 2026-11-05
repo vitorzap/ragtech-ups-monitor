@@ -1,11 +1,12 @@
 #!/bin/sh
 
-BASE="/share/Container/qnap-stack/nut-ragtech/qnap-test"
-CONF="$BASE/upsmon.conf"
-LOG="$BASE/upsmon-service.log"
-LOCK="$BASE/supervisor.lock"
+SCRIPT_DIR=$(CDPATH= cd -- "$(dirname -- "$0")" && pwd) || exit 1
+. "$SCRIPT_DIR/ups-common.sh"
+CONF="$LOG_DIR/upsmon.conf"
+LOG="$LOG_DIR/upsmon-service.log"
+LOCK="$LOG_DIR/supervisor.lock"
 
-export NUT_CONFPATH="$BASE"
+export NUT_CONFPATH="$LOG_DIR"
 umask 077
 
 log() {
@@ -65,12 +66,12 @@ if ! grep -q '^SHUTDOWNCMD "/bin/true"$' "$CONF"; then
 fi
 
 log "Supervisor iniciado. PID $$"
-if [ -x /share/Container/qnap-stack/nut-ragtech/qnap-ups-events-watch.sh ]; then
-    /bin/sh /share/Container/qnap-stack/nut-ragtech/qnap-ups-events-watch.sh </dev/null >/dev/null 2>&1 &
+if [ -f "$BASE/qnap-ups-events-watch.sh" ]; then
+    /bin/sh "$BASE/qnap-ups-events-watch.sh" </dev/null >/dev/null 2>&1 &
 fi
 
 while true; do
-    STATUS=$(/sbin/upsc ragtech700@127.0.0.1:3493 ups.status 2>/dev/null)
+    STATUS=$(/sbin/upsc "$UPS" ups.status 2>/dev/null)
 
     if [ -n "$STATUS" ]; then
         log "NUT disponivel. Estado: $STATUS"

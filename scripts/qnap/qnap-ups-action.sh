@@ -10,7 +10,12 @@
 # Mantem o bloqueio de seguranca ja existente.
 # ============================================================
 
-BASE="/share/Container/qnap-stack/nut-ragtech"
+SCRIPT_DIR=$(CDPATH= cd -- "$(dirname -- "$0")" && pwd) || exit 1
+. "$SCRIPT_DIR/ups-common.sh"
+
+: "${MAC_USER:?MAC_USER não configurado}"
+: "${MAC_HOST:?MAC_HOST não configurado}"
+: "${SSH_KEY_FILE:?SSH_KEY_FILE não configurado}"
 
 SSH_DIR="$BASE/ssh"
 LOG="$BASE/qnap-test/ups-actions.log"
@@ -38,16 +43,17 @@ case "$ACTION" in
         # O receptor possui sua propria autorizacao.
         log "MAC: solicitacao de desligamento"
 
-        ssh -i "$SSH_DIR/macmini_ups" \
-          -o IdentitiesOnly=yes \
-          -o BatchMode=yes \
-          -o StrictHostKeyChecking=yes \
-          -o UserKnownHostsFile="$SSH_DIR/known_hosts" \
-          -o ConnectTimeout=5 \
-          -o ConnectionAttempts=1 \
-          -o ServerAliveInterval=5 \
-          -o ServerAliveCountMax=2 \
-          vitor@192.168.15.22 ups-shutdown
+          
+        ssh -i "$SSH_DIR/$SSH_KEY_FILE" \
+		  -o IdentitiesOnly=yes \
+		  -o BatchMode=yes \
+		  -o StrictHostKeyChecking=yes \
+		  -o UserKnownHostsFile="$SSH_DIR/known_hosts" \
+		  -o ConnectTimeout=5 \
+		  -o ConnectionAttempts=1 \
+		  -o ServerAliveInterval=5 \
+		  -o ServerAliveCountMax=2 \
+		  "${MAC_USER}@${MAC_HOST}" ups-shutdown
 
         RC=$?
 
@@ -59,7 +65,7 @@ case "$ACTION" in
         log "QNAP: solicitacao de desligamento"
 
         STATUS=$(
-            /sbin/upsc ragtech700@127.0.0.1:3493 ups.status \
+            /sbin/upsc "$UPS" ups.status \
             2>/dev/null
         )
 

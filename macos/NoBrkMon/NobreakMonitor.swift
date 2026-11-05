@@ -107,7 +107,7 @@ struct AppConfig: Codable {
     }
 
     static let defaults = AppConfig(
-        target: "ragtech700@192.168.15.24:18083",
+        target: "ragtech700@localhost:3493",
         pollIntervalSeconds: 5,
         thresholds: [
             "battery.charge":   Threshold(okMin: 80, warnMin: 50),
