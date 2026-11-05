@@ -33,17 +33,17 @@ by this project.
 
 ## Components
 
-+-----------------+---------------------------------------------+
-| Directory       | Description                                 |
-|-----------------+---------------------------------------------|
-| docker/         | NUT container build and configuration       |
-| driver/         | Driver information and upstream references  |
-| scripts/qnap/   | Adaptive shutdown scripts, version V5.2     |
-| scripts/macos/  | Remote shutdown integration                 |
-| macos/NoBrkMon/ | Native macOS monitoring application         |
-| tests/          | Available validation scripts                |
-| docs/.          | Project documentation                       |
-+-----------------+---------------------------------------------+
+
+| Directory | Description |
+|---|---|
+| `docker/` | NUT container build and configuration |
+| `driver/` | Driver information and upstream references |
+| `scripts/qnap/` | Adaptive shutdown scripts, version V5.2 |
+| `scripts/macos/` | Remote shutdown integration |
+| `macos/NoBrkMon/` | Native macOS monitoring application |
+| `tests/` | Available validation scripts |
+| `docs/` | Project documentation |
+
 
 ## NUT version
 
