@@ -14,6 +14,13 @@ and macOS.
 - Event history and discharge-rate estimation
 - NoBrkMon native Swift application for macOS
 
+## NoBrkMon — macOS Monitoring Application
+
+NoBrkMon is a native macOS application for monitoring
+Ragtech UPS information through Network UPS Tools (NUT).
+
+![NoBrkMon macOS Dashboard](docs/images/nobrkmon.png)
+
 ## Tested hardware
 
 - UPS: Ragtech Easy Pro 700 VA
@@ -26,15 +33,17 @@ by this project.
 
 ## Components
 
-| Directory | Description |
-|-----------|-------------|
-| docker/ | NUT container build and configuration |
-| driver/ | Driver information and upstream references |
-| scripts/qnap/ | Adaptive shutdown scripts, version V5.2 |
-| scripts/macos/ | Remote shutdown integration |
-| macos/NoBrkMon/ | Native macOS monitoring application |
-| tests/ | Available validation scripts |
-| docs/ | Project documentation |
++-----------------+---------------------------------------------+
+| Directory       | Description                                 |
+|-----------------+---------------------------------------------|
+| docker/         | NUT container build and configuration       |
+| driver/         | Driver information and upstream references  |
+| scripts/qnap/   | Adaptive shutdown scripts, version V5.2     |
+| scripts/macos/  | Remote shutdown integration                 |
+| macos/NoBrkMon/ | Native macOS monitoring application         |
+| tests/          | Available validation scripts                |
+| docs/.          | Project documentation                       |
++-----------------+---------------------------------------------+
 
 ## NUT version
 
