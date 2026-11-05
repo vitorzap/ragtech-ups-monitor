@@ -1,0 +1,38 @@
+# Credenciais e configuracoes particulares
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+id_rsa*
+id_ed25519*
+authorized_keys
+known_hosts
+*.secret
+*.credentials
+
+# Logs e dados locais
+*.log
+ups-history.txt
+*.pid
+*.sqlite
+*.sqlite3
+.DS_Store
+
+# macOS / Swift / Xcode
+.build/
+.swiftpm/
+DerivedData/
+build/
+xcuserdata/
+*.xcuserstate
+*.mobileprovision
+*.provisionprofile
+
+# Temporarios
+*.tmp
+*.bak
+*.backup
+*.backup.sh
